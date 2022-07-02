@@ -74,6 +74,6 @@ const {user} = useContext(AppContext);
       <Container>{props.children}</Container>
     </div>
   );
-};
+}; 
 
 export default Layout;
