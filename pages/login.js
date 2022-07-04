@@ -13,17 +13,22 @@ import {
   Input,
 } from "reactstrap";
 import { login } from "../components/auth";
-import AppContext from "../components/context";
+import AuthContext, { useUserSession } from "../components/context";
 
-function Login(props) {
+function Login(props, user) {
   const [data, updateData] = useState({ identifier: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const router = useRouter();
-  const appContext = useContext(AppContext);
+  const authContext = useContext(AuthContext);
+  
+
+  // const {login} = useUserSession()
+  // const [name, setName] = useState('')
+
 
   useEffect(() => {
-    if (appContext.isAuthenticated) {
+    if (authContext.isAuthenticated) {
       router.push("/"); // redirect if you're already logged in
     }
   }, []);
@@ -37,7 +42,7 @@ function Login(props) {
       <Row>
         <Col sm="12" md={{ size: 5, offset: 3 }}>
           <div className="paper">
-            <div className="header">
+            <div className="header" >
               <img src="BigBearLogo.jpeg" />
             </div>
             <section className="wrapper">
@@ -82,7 +87,7 @@ function Login(props) {
                       </a>
                     </span>
                     <Button
-                      style={{ float: "right", width: 120 }}
+                      style={{ float: "right", width: 200 }}
                       color="primary"
                       onClick={() => {
                         setLoading(true);
@@ -90,7 +95,7 @@ function Login(props) {
                           .then((res) => {
                             setLoading(false);
                             // set authed User in global context to update header/app state
-                            appContext.setUser(res.data.user);
+                            authContext.setUser(res.data.user);
                           })
                           .catch((error) => {
                             //setError(error.response.data);
@@ -98,8 +103,64 @@ function Login(props) {
                           });
                       }}
                     >
-                      {loading ? "Loading... " : "Submit"}
+                      {loading ? "Loading... " : "Sign In"}
                     </Button>
+                    <br></br><br></br>
+                    <Button
+                    style={{ float: "right", width: 200 }}
+                      color="primary"
+                      onClick={() => {
+                        setLoading(true);
+                        login(data.identifier, data.password)
+                          .then((res) => {
+                            setLoading(false);
+                            // set authed User in global context to update header/app state
+                            authContext.setUser(res.data.user);
+                          })
+                          .catch((error) => {
+                            //setError(error.response.data);
+                            setLoading(false);
+                          });
+                      }}
+                      > 
+                      {loading ? "Loading... " : "Sign In With Google"}
+                    </Button>
+                    <br></br><br></br>
+                    <Button
+                    style={{ float: "right", width: 200 }}
+                      color="primary"
+                      onClick={() => {
+                        setLoading(true);
+                        login(data.identifier, data.password)
+                          .then((res) => {
+                            setLoading(false);
+                            // set authed User in global context to update header/app state
+                            authContext.setUser(res.data.user);
+                          })
+                          .catch((error) => {
+                            //setError(error.response.data);
+                            setLoading(false);
+                          });
+                      }}
+                      > 
+                      {loading ? "Loading... " : "Sign In With Facebook"}
+                    </Button>
+
+{/*                    
+  {/* <form onSubmit={onSubmit}> */}
+    {/* <h1>Log In</h1>
+    <label>Name:
+    </label>
+    <input
+    className="form-control"
+    type="text"
+    value={name}
+    onChange={e => setName(e.currentTarget.value)}
+    placeholder="enter name"
+    >
+    </input> */}
+  {/* </form> */}
+
                   </FormGroup>
                 </fieldset>
               </Form>

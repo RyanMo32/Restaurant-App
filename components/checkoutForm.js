@@ -51,11 +51,31 @@ function CheckoutForm() {
         token: token.token.id,
       }),
     });
+  
 
-    if (!response.ok) {
+    if (response.ok) {
+
       setError(response.statusText);
       console.log("SUCCESS")
     }
+
+
+//     var elements = stripe.elements();
+// stripe.confirmCardPayment({
+//   elements,
+//   confirmParams: {
+//     // Return URL where the customer should be redirected after the PaymentIntent is confirmed.
+//     return_url: 'http://localhost:3000/',
+//   },
+// })
+// .then(function(result) {
+//   if (result.error) {
+//     // Inform the customer that there was an error.
+//   }
+// });
+
+
+
 
     // OTHER stripe methods you can use depending on app
     // // or createPaymentMethod - https://stripe.com/docs/js/payment_intents/create_payment_method

@@ -1,20 +1,31 @@
 import { useContext, useState } from "react";
 import Head from "next/head";
-import AppContext from "../components/context";
+import AuthContext from "../components/context";
 import Home from "./index"
-import Layout from "../components/layout"
+import NavBar from "../components/navbar"
 import Cookie from "js-cookie"
+import { AuthContextProvider } from "../components/context";
 
+//const Guest_User = {___guest: true, displayName: "Guest"}
 
 function MyApp(props){
-  var {cart,addItem,removeItem, user, setUser} = useContext(AppContext)
+  var {cart,addItem,removeItem} = useContext(AuthContext)
   const [state,setState] = useState({cart:cart});
   const { Component, pageProps } = props;
-  
-  
-  setUser = (user) => {
-    setState({ user });
-  };
+
+
+
+  const [user, setUser] = useState(null)
+
+//function logIn(name) {
+ // setUser({ __guest: false, displayName: name})
+//}
+
+
+
+  // setUser = (user) => {
+  //   setState({ user });
+  // };
   addItem = (item) => {
     let { items } = state.cart;
     //check for item already in cart
@@ -83,7 +94,9 @@ function MyApp(props){
   }
 
   return (
-    <AppContext.Provider value={{cart: state.cart, addItem: addItem, removeItem: removeItem,isAuthenticated:false,user:null,setUser:()=>{}}}>
+  //  <AuthContextProvider>
+
+   <AuthContext.Provider value={{ user, cart: state.cart, addItem: addItem, removeItem: removeItem,isAuthenticated:false,user:null,setUser:()=>{}}}> 
       <Head>
         <link
           rel="stylesheet"
@@ -92,12 +105,14 @@ function MyApp(props){
           crossOrigin="anonymous"
         />
       </Head>
-    
-      <Layout>
-          <Component {...pageProps} />
-      </Layout>
 
-    </AppContext.Provider>
+      <NavBar>
+          <Component {...pageProps} />
+      </NavBar>
+
+    </AuthContext.Provider> 
+
+  //  </AuthContextProvider>
   );
   
 }

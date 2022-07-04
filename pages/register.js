@@ -13,13 +13,13 @@ import {
   Input,
 } from "reactstrap";
 import { registerUser } from "../components/auth";
-import AppContext from "../components/context";
+import AuthContext from "../components/context";
 
-const Register = () => {
+const Register = (user) => {
   const [data, setData] = useState({ email: "", username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
-  const appContext = useContext(AppContext);
+  const authContext = useContext(AuthContext);
   return (
     <Container>
       <Row>
@@ -89,7 +89,7 @@ const Register = () => {
                       </a>
                     </span>
                     <Button
-                      style={{ float: "right", width: 120 }}
+                      style={{ float: "right", width: 200 }}
                       color="primary"
                       disabled={loading}
                       onClick={() => {
@@ -97,7 +97,7 @@ const Register = () => {
                         registerUser(data.username, data.email, data.password)
                           .then((res) => {
                             // set authed user in global context object
-                            appContext.setUser(res.data.user);
+                            authContext.setUser(res.data.user);
                             setLoading(false);
                             console.log(`registered user: ${JSON.stringify(res.data)}`)
                           })
@@ -108,7 +108,53 @@ const Register = () => {
                           });
                       }}
                     >
-                      {loading ? "Loading.." : "Submit"}
+                      {loading ? "Loading.." : "Sign Up"}
+                    </Button>
+                    <br></br><br></br>
+                    <Button
+                      style={{ float: "right", width: 200 }}
+                      color="primary"
+                      disabled={loading}
+                      onClick={() => {
+                        setLoading(true);
+                        registerUser(data.username, data.email, data.password)
+                          .then((res) => {
+                            // set authed user in global context object
+                            authContext.setUser(res.data.user);
+                            setLoading(false);
+                            console.log(`registered user: ${JSON.stringify(res.data)}`)
+                          })
+                          .catch((error) => {
+                            console.log(`error in register: ${error}`)
+                            //setError(error.response.data);
+                            setLoading(false);
+                          });
+                      }}
+                    >
+                      {loading ? "Loading.." : "Sign Up With Google"}
+                    </Button>
+                    <br></br><br></br>
+                    <Button
+                      style={{ float: "right", width: 200 }}
+                      color="primary"
+                      disabled={loading}
+                      onClick={() => {
+                        setLoading(true);
+                        registerUser(data.username, data.email, data.password)
+                          .then((res) => {
+                            // set authed user in global context object
+                            authContext.setUser(res.data.user);
+                            setLoading(false);
+                            console.log(`registered user: ${JSON.stringify(res.data)}`)
+                          })
+                          .catch((error) => {
+                            console.log(`error in register: ${error}`)
+                            //setError(error.response.data);
+                            setLoading(false);
+                          });
+                      }}
+                    >
+                      {loading ? "Loading.." : "Sign Up With Facebook"}
                     </Button>
                   </FormGroup>
                 </fieldset>

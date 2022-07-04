@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { Button, Card, CardBody, CardTitle, Badge } from "reactstrap";
-import AppContext from "./context"
+import AuthContext from "./context"
 import Link from "next/link"
 // we can pass cart data in via props method 
 // the alternative is using useContext as below
 function Cart() {
   let isAuthenticated = true;
-  let {cart,addItem,removeItem} = useContext(AppContext);
+  let {cart,addItem,removeItem} = useContext(AuthContext);
   //const [cartA, setCartA] = useState({cart})
   //cart = value.cart;
   //console.log('props:'+ JSON.stringify(value));
@@ -81,7 +81,7 @@ const checkoutItems = ()=>{
       </Badge>
           <Link href="/checkout/">
             <Button style={{ width: "60%" }} color="primary">
-              <a>Order</a>
+              <a>Place Order</a>
             </Button>
           </Link>
     </div>

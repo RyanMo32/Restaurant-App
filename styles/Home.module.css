@@ -36,7 +36,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #6281a4;
   text-decoration: none;
 }
 
@@ -119,4 +119,13 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+
+/* .Button {
+  color:rgb(65, 255, 157)
+} */
+
+.wrapper{
+  color: yellow;
 }

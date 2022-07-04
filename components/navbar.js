@@ -4,11 +4,20 @@ import React, { useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { Container, Nav, NavItem } from "reactstrap";
-import AppContext from "./context";
+//import AppContext from "./context";
+import AuthContext from "./context";
+import { useUserSession } from "./context";
+import { LogInForm } from "./auth";
 
-const Layout = (props) => {
+
+const NavBar = (props) => {
 const title = "Welcome to Nextjs";
-const {user} = useContext(AppContext);
+const { user, login} = useContext(AuthContext);
+//const { user } = useUserSession();
+//const  user  = {displayName: "Guest User"};
+
+
+
   return (
     <div>
       <Head>
@@ -69,11 +78,44 @@ const {user} = useContext(AppContext);
               </Link>
             )}
           </NavItem>
+          {/* <li>
+            <span> Welcome {user}</span>
+          </li> */}
+{/* 
+                <li onClick={login} className="btn">Login/Signup
+                </li> */}
+
         </Nav>
+
       </header>
       <Container>{props.children}</Container>
+
     </div>
   );
 }; 
 
-export default Layout;
+
+// export default function Layout() {
+//   const { user, login } = useContext(AuthContext)
+//   console.log(user)
+
+//   return (
+//     <div className="container">
+//       <nav>
+//         <h1>Gaming Vibes</h1>
+//         <ul>
+//           <li><Link href="/"><a>Home</a></Link></li>
+//           <li><Link href="/"><a>Guides</a></Link></li>
+//           <li onClick={login} className="btn">Login/Signup</li>
+//         </ul>
+//       </nav>
+//       <div className="banner">
+//       </div>
+//     </div>
+//   )
+// }
+
+
+
+
+export default NavBar;

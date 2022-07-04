@@ -1,7 +1,7 @@
 import {useRouter} from "next/router"
 import {gql,useQuery} from '@apollo/client';
 import {useState, useContext} from 'react'
-import AppContext from "./context"
+import AuthContext from "./context"
 import {
   Button,
   Card,
@@ -13,7 +13,7 @@ import {
   Col} from "reactstrap";
 function Dishes({restId}){
   const [restaurantID, setRestaurantID] = useState()
-  const {addItem} = useContext(AppContext)
+  const {addItem} = useContext(AuthContext)
 
 const GET_RESTAURANT_DISHES = gql`
   query($id: ID!) {
@@ -64,7 +64,7 @@ const GET_RESTAURANT_DISHES = gql`
                 <div className="card-footer">
                   <Button color="info"
                     outline
-                    color="primary"
+                    // color="primary"
                     onClick = {()=> addItem(res)}
                   >
                     + Add To Cart

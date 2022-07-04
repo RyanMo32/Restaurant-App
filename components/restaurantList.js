@@ -3,7 +3,7 @@ import Dishes from "./dishes"
 import {useContext, useState} from 'react';
 
 
-import AppContext from "./context"
+import AuthContext from "./context"
 import {
   Button,
   Card,
@@ -17,7 +17,7 @@ import {
 
 function RestaurantList(props){
   const[restaurantID, setRestaurantID] = useState(0)
-  const {cart } = useContext(AppContext);
+  const {cart } = useContext(AuthContext);
   const [state, setState] = useState(cart)
   const GET_RESTAURANTS = gql`
     query {
@@ -64,7 +64,12 @@ if(searchQuery.length > 0){
         </CardBody>
         <div className="card-footer">
         
-        <Button color="info" onClick={()=> setRestaurantID(res.id)}>{res.name}</Button>
+        <Button color="info" onClick={()=> setRestaurantID(res.id)}>{res.name} Menu</Button>
+        <br></br>
+        <br></br>
+
+        <Button color="info" onClick={()=> setRestaurantID(res.id)}>Get Directions</Button>
+
          
         </div>
       </Card>

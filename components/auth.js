@@ -4,11 +4,44 @@ import { useEffect } from "react";
 import Router from "next/router";
 import Cookie from "js-cookie";
 import axios from "axios";
+import { useUserSession } from "./context";
+
+
+
+export const LogInForm = () => {
+  const { logIn } = useUserSession()
+  const [name, setName] = useState('')
+
+  function onSubmit(e) {
+    e.preventDefault()
+    logIn(name)
+  }
+}
+
+// return(
+//   <form onSubmit={onSubmit}>
+//     <h1>Log In</h1>
+//     <label>Name:
+//     </label>
+//     <input
+//     className="form-control"
+//     type="text"
+//     value={name}
+//     onChange={e => setName(e.currentTarget.value)}
+//     placeholder="enter name"
+//     >
+//     </input>
+//   </form>
+// )
+
+
+
+
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
 
 //register a new user
-export const registerUser = (username, email, password) => {
+export const registerUser = (username, email, password, user) => {
   //prevent function from being ran on the server
   if (typeof window === "undefined") {
     return;
@@ -32,7 +65,7 @@ export const registerUser = (username, email, password) => {
   });
 };
 
-export const login = (identifier, password) => {
+export const login = (identifier, password, user) => {
   //prevent function from being ran on the server
   if (typeof window === "undefined") {
     return;
