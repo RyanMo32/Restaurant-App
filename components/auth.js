@@ -44,7 +44,7 @@ export const registerUser = (username, email, password, user) => {
       });
   });
 };
-
+ 
 export const login = (identifier, password, user) => {
   //prevent function from being ran on the server
   if (typeof window === "undefined") {
