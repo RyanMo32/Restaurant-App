@@ -15,6 +15,7 @@ import {
 import { login } from "../components/auth";
 import AuthContext, { useUserSession } from "../components/context";
 
+
 function Login(props, user) {
   const [data, updateData] = useState({ identifier: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -116,6 +117,8 @@ function Login(props, user) {
                             setLoading(false);
                             // set authed User in global context to update header/app state
                             authContext.setUser(res.data.user);
+                            alertFunction.success('Registration successful', { keepAfterRouteChange: true });
+                            <p>Welcome {data.name}</p>
                           })
                           .catch((error) => {
                             //setError(error.response.data);

@@ -11,6 +11,7 @@ import router from 'next/router';
 
 
 // // set backup default for isAuthenticated if none is provided in Provider
+//const [user, setUser] = useState({});
 
 
 const AuthContext = createContext({
@@ -25,7 +26,6 @@ const AuthContext = createContext({
        removeItem:()=>{}, 
        setUser:()=>{},
        
-     //  const [user, setUser] = React.useState(null)
     })
 
 

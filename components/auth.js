@@ -18,26 +18,6 @@ export const LogInForm = () => {
   }
 }
 
-// return(
-//   <form onSubmit={onSubmit}>
-//     <h1>Log In</h1>
-//     <label>Name:
-//     </label>
-//     <input
-//     className="form-control"
-//     type="text"
-//     value={name}
-//     onChange={e => setName(e.currentTarget.value)}
-//     placeholder="enter name"
-//     >
-//     </input>
-//   </form>
-// )
-
-
-
-
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
 
 //register a new user

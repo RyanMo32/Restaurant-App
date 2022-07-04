@@ -15,7 +15,8 @@ function MyApp(props){
 
 
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+
 
 //function logIn(name) {
  // setUser({ __guest: false, displayName: name})
@@ -104,14 +105,17 @@ function MyApp(props){
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossOrigin="anonymous"
         />
+
       </Head>
 
       <NavBar>
+
           <Component {...pageProps} />
+          {/* <img src="BigBearblvd.jpeg" /> */}
+    
       </NavBar>
-
+      
     </AuthContext.Provider> 
-
   //  </AuthContextProvider>
   );
   

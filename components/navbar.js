@@ -11,7 +11,7 @@ import { LogInForm } from "./auth";
 
 
 const NavBar = (props) => {
-const title = "Welcome to Nextjs";
+const title = "Big Bear Mountain Eats";
 const { user, login} = useContext(AuthContext);
 //const { user } = useUserSession();
 //const  user  = {displayName: "Guest User"};
