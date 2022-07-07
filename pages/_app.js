@@ -107,7 +107,7 @@ function MyApp(props){
         />
  
       </Head>
-
+ 
       <NavBar>
 
           <Component {...pageProps} />
