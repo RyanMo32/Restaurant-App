@@ -8,6 +8,7 @@
     "build": "strapi build",
     "start": "strapi start",
     "strapi": "strapi",
+    "server": "nodemon index.js",
     "lint": "eslint ."
   },
   "devDependencies": {
